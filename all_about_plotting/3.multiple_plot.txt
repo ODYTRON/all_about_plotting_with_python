@@ -1,0 +1,66 @@
+# they did the same thing but with a for loop
+# that means that you can write less lines of code!
+###################################################################################
+# fig = plt.figure(figsize=(10,6))
+# colors = ['red', 'blue', 'green', 'orange', 'black']
+# for i in range(5):
+#    start_index = i*12
+#    end_index = (i+1)*12
+#    subset = unrate[start_index:end_index]
+#    plt.plot(subset['MONTH'], subset['VALUE'], c=colors[i])
+# plt.show()
+####################################################################################
+
+# import pandas
+import pandas as pd
+# import matplotlib
+import matplotlib.pyplot as plt
+
+# read the dataframe
+unrate = pd.read_csv("unrate.csv")
+
+# convert the text to datetime format
+unrate['DATE'] = pd.to_datetime(unrate['DATE'])
+# extract the month only in a column with pandas.Series.dt accessor:
+unrate['MONTH'] = unrate['DATE'].dt.month
+
+# test data
+print(unrate.head(12))
+print(unrate.head(24))
+
+# select and cut data for year 1948 
+plot_data_48 = unrate[0:12]
+# select and cut data for year 1949 
+plot_data_49 = unrate[12:24]
+# select and cut data for year 1950 
+plot_data_50 = unrate[24:36]
+# select and cut data for year 1951
+plot_data_51 = unrate[36:48]
+# select and cut data for year 1952
+plot_data_52 = unrate[48:60]
+
+
+# create the plot example one plot only with plt.plot
+# we can use it below to print multiple lines on a single plot
+# plt.plot(plot_data['DATE'],plot_data['VALUE'])
+
+# create a figure to use it as a container but we add the parameters width and height to determine our
+# plot area example width 10 and height 6
+fig = plt.figure(figsize = (10,6))
+
+
+
+
+# print multiple lines on the same basic plot with different colours and labels to show in legend
+# in our case for years 1948-1952
+plt.plot(plot_data_48['MONTH'],plot_data_48['VALUE'], c= 'red', label = '1948')
+plt.plot(plot_data_49['MONTH'],plot_data_49['VALUE'], c= 'blue', label = '1949')
+plt.plot(plot_data_50['MONTH'],plot_data_50['VALUE'], c= 'green', label = '1950')
+plt.plot(plot_data_51['MONTH'],plot_data_51['VALUE'], c= 'orange', label = '1951')
+plt.plot(plot_data_52['MONTH'],plot_data_52['VALUE'], c= 'black', label = '1952')
+
+# create a legend upper left
+plt.legend(loc='upper left')
+
+# print all plots
+plt.show()

@@ -1,0 +1,40 @@
+
+import matplotlib.pyplot as plt
+from numpy import arange
+
+num_cols = ['RT_user_norm', 'Metacritic_user_nom', 'IMDB_norm', 'Fandango_Ratingvalue', 'Fandango_Stars']
+
+# it takes bar_heights = norm_reviews[num_cols].iloc[0].valuesakes the numbers of the columns as heights (is using iloc to get integer from the intex 0)
+bar_heights = norm_reviews[num_cols].iloc[0].values
+# it arranges bar  weights 5 bars with 0,75 distance
+bar_positions = arange(5) + 0.75
+# adjust the range of labels
+tick_positions = range(1,6)
+
+# generate a single subplot and return both the Figure and Axes object. This is a shortcut from the technique we used in the previous mission
+fig, ax = plt.subplots()
+
+
+
+# (parameters of ax.bar : left x axis midlle : heights, last: width) 
+
+ax.bar(bar_positions, bar_heights, 0.5)
+
+
+ax.set_xticks(tick_positions)
+
+# we set the rotation of the x labels to be able to view them clearly
+
+ax.set_xticklabels(num_cols, rotation=90)
+
+
+# give a name to the x axis
+plt.xlabel('Rating Source')
+
+# give a name to the y axis
+plt.ylabel('Average Rating')
+
+
+# give a name to the plot
+plt.title('Average User Rating For Avengers: Age of Ultron (2015)')
+plt.show()

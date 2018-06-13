@@ -1,0 +1,36 @@
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+# read the csv as dataframe
+reviews = pd.read_csv("fandango_scores.csv")
+
+# select the columns
+column1 = ["Fandango_Ratingvalue"]
+
+column2 = ["RT_user_norm"]
+ 
+# take an instance of the df with the selected columns    
+Fandango_Ratingvalue = reviews[column1]
+
+RT_user_norm = reviews[column2]
+
+
+# generate a single subplot and return both the Figure and Axes object. This is a shortcut from the technique we used in the previous mission.
+
+# OR Create a single subplot and assign the returned Figure object to fig and the returned Axes object to ax. we use the ax word to set everything from scatter to labels
+fig, ax = plt.subplots()
+
+ 
+# create the scater plot with parameters x and y the selected column instances from above 
+# look the word ax, is the same with the declared ax when we created the scatter plot
+ax.scatter(Fandango_Ratingvalue, RT_user_norm)
+
+# give a name to the x axis
+ax.set_xlabel('Fandango')
+
+# give a name to the y axis
+ax.set_ylabel('Rotten Tomatoes')
+
+
+plt.show() 

@@ -1,0 +1,49 @@
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+# read the csv as dataframe
+reviews = pd.read_csv("fandango_scores.csv")
+
+# select the columns
+column1 = ["Fandango_Ratingvalue"]
+
+column2 = ["RT_user_norm"]
+ 
+# take an instance of the df with the selected columns    
+Fandango_Ratingvalue = reviews[column1]
+
+RT_user_norm = reviews[column2]
+
+
+# generate two subplots and set the dimentions and size of the plot. 
+
+fig = plt.figure(figsize=(5,10))
+ax1 = fig.add_subplot(2,1,1)
+ax2 = fig.add_subplot(2,1,2)
+
+ 
+# create the scater plot with parameters x and y the selected column instances from above 
+# look the word ax, is the same with the declared ax when we created the scatter plot
+ax1.scatter(Fandango_Ratingvalue, RT_user_norm)
+
+# give a name to the x axis
+ax1.set_xlabel('Fandango')
+
+# give a name to the y axis
+ax1.set_ylabel('Rotten Tomatoes')
+
+# create the second scatter plot
+ax2.scatter(RT_user_norm, Fandango_Ratingvalue)
+
+# give a name to the x axis
+ax2.set_xlabel('Rotten Tomatoes')
+
+# give a name to the y axis
+ax2.set_ylabel('Fandango')
+
+# show the scatter plots
+plt.show() 
+
+# The second scatter plot is a mirror reflection of the first scatter plot. The nature of the correlation is still reflected, however, which is the important thing.
+
